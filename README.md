@@ -30,10 +30,9 @@ The `app()` is the builder function and takes an `opts` object:
 
 #### Output:
 
-| Property        | Description                                               |
-| --------------- | --------------------------------------------------------- |
-| `state([data])` | state function to get or update internal data             |
-| `actions`       | component actions that you can call outside the component |
+| Property        | Description                                   |
+| --------------- | --------------------------------------------- |
+| `state([data])` | state function to get or update internal data |
 
 ### h(tag, [...args])
 
@@ -65,4 +64,4 @@ The `h()` is an **optional** hypertext build utility that weighs in around **~25
 
 ## Notes
 
-> WORK-IN-PROGRESS: actions do not work
+> WORK-IN-PROGRESS
