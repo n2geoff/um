@@ -2,7 +2,7 @@ export default function app(opts, selector = "body") {
     // initial setup
     let data = {};
     let view = () => null;
-    let methods = {};
+    let actions = {};
 
     // query helper
     const $ = document.querySelector.bind(document);
@@ -14,39 +14,39 @@ export default function app(opts, selector = "body") {
         }
 
         // update ui
-        render();
+        update();
 
         // return current state
         return data;
     }
 
-    const render = () => {
-        $(selector).replaceChildren(view(data, methods));
+    const update = () => {
+        $(selector).replaceChildren(view(data, actions));
     }
 
-    // setup view
+    // setup view function
     if (opts.view && typeof opts.view === "function") {
         view = opts?.view;
     }
 
-    // setup data
-    if (opts.data && typeof opts.data === "object") {
+    // setup data object
+    if (opts.state && typeof opts.state === "object") {
         // wrap data in state object
-        data = state(opts.data);
+        data = state(opts.state);
     }
 
-    // setup methods
-    if (opts.methods && typeof opts.methods === "object") {
-        methods = opts.methods;
+    // setup actions object
+    if (opts.actions && typeof opts.actions === "object") {
+        actions = opts.actions;
     }
 
     // mount view
     if (opts.view && selector) {
-        render();
+        update();
     }
 
     return {
         state,
-        methods,
+        actions,
     };
 }

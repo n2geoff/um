@@ -15,16 +15,16 @@ This is an experimental composable ui library that takes ideas from Elm Architec
 
 the `app` builder takes an `opts` object that expects it to include:
 
-- `data` as initial data `{object}`
-- `methods` as `{object}` with functions definitions
+- `state` as initial data `{object}`
+- `actions` as `{object}` with functions definitions
 - `view` as `{function}` that returns valid dom
 
 and a querySelector compatible `selector` to mount the ui.
 
 `app` returns:
 
--  a object that returns a `state` object that you can use to update in other components
-- `methods` you can call outside the app component
+- `state` current of component as updatable function
+- `actions` to call on component
 
 ### Example
 
@@ -33,8 +33,8 @@ and a querySelector compatible `selector` to mount the ui.
         import {app, h} from "./tagged.js";
 
         const myapp = app({
-            data: {name: "[Your Name Here]", job: "Developer"},
-            view(state, methods) {
+            state: {name: "[Your Name Here]", job: "Developer"},
+            view(state, actions) {
                 return h("main", [
                     h("strong", `Greeting from ${state.name}`),
                     h("div", `Your local ${state.job}`),
@@ -59,7 +59,6 @@ and a querySelector compatible `selector` to mount the ui.
 
 ## Todo
 
-- Methods
-- Update API: state, actions
+- Actions Example
 
 > WORK-IN-PROGRESS

@@ -14,8 +14,8 @@
         import {app, h} from "../src/index.js";
 
         const myapp = app({
-            data: {name: "[Your Name Here]", job: "Developer"},
-            view(state, methods) {
+            state: {name: "[Your Name Here]", job: "Developer"},
+            view(state, actions) {
                 return h("main", [
                     h("strong", `Greeting from ${state.name}`),
                     h("div", `Your local ${state.job}`),
