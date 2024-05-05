@@ -1,11 +1,14 @@
-export default function app(opts, selector = "body") {
+export default function app(opts) {
     // initial setup
-    let data = {};
-    let view = () => null;
-    let actions = {};
+    let data    = check(opts.state, {});
+    let view    = check(opts.view, () => null);
+    let actions = check(opts.actions, {});
+    let mount   = opts.mount || "body";
 
-    // query helper
-    const $ = document.querySelector.bind(document);
+    // check set or default
+    function check(value, type) {
+        return typeof value === typeof type ? value : type;
+    }
 
     // state helper
     const state = (state) => {
@@ -21,32 +24,16 @@ export default function app(opts, selector = "body") {
     }
 
     const update = () => {
-        $(selector).replaceChildren(view(data, actions));
-    }
-
-    // setup view function
-    if (opts.view && typeof opts.view === "function") {
-        view = opts?.view;
-    }
-
-    // setup data object
-    if (opts.state && typeof opts.state === "object") {
-        // wrap data in state object
-        data = state(opts.state);
-    }
-
-    // setup actions object
-    if (opts.actions && typeof opts.actions === "object") {
-        actions = opts.actions;
+        document.querySelector(mount).replaceChildren(view(data, actions));
     }
 
     // mount view
-    if (opts.view && selector) {
+    if (opts.view && mount) {
         update();
     }
 
     return {
         state,
         actions,
-    };
+    }
 }
