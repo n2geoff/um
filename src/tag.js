@@ -9,8 +9,11 @@
 export default function tag(tag, ...args) {
     const el = document.createElement(tag);
 
+    // support all scalar values as TextNodes
+    const isScalar = (value) => ["boolean", "string", "number"].includes(typeof value);
+
     args.forEach((arg) => {
-        if (typeof arg === "string" || typeof arg === "number") {
+        if (isScalar(arg)) {
             el.appendChild(document.createTextNode(arg));
         } else if (Array.isArray(arg)) {
             el.append(...arg);
