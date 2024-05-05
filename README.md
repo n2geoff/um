@@ -1,8 +1,8 @@
 # Tagged
 
-> Minimal Javascript UI Library
+> Minimal JavaScript UI Builder
 
-This is an experimental composable ui builder that takes ideas from Elm Architecture, but without the doctrine - this is Javascript!
+An experimental composable UI builder that takes ideas from early [hyperapp](https://github.com/jorgebucaran/hyperapp) design, but does not stick to strict Elm Architecture.
 
 ## Features
 - No Virtual Dom
@@ -13,19 +13,34 @@ This is an experimental composable ui builder that takes ideas from Elm Architec
 
 ## Overview
 
-the `app` builder takes an `opts` object that expects:
+The library only has 2 functions, `app()`  and `h()`, and the later is optional.  
 
-- `state` as initial data `{object}`
-- `actions` as `{object}` with functions definitions
-- `view` as `{function}` that returns valid dom
-- `mount` as querySelector compatible `{string}`
+### app({opts}) 
 
-`app` returns:
+The `app()` is the builder function and takes an `opts` object:
 
-- `state` current of component as updatable function
-- `actions` to call on component
+#### Input:
 
-### Example
+| Property  | Default                    | Description                                                 |
+| --------- | -------------------------- | ----------------------------------------------------------- |
+| `state`   | `{}`                       | initial data state                                          |
+| `actions` | `{}`                       | function object passed to view                              |
+| `view`    | `(state, actions) => null` | function that takes state and actions and returns valid dom |
+| `mount`   | "body"                     | valid query selector as mounting point                      |
+
+#### Output:
+
+| Property        | Description                                               |
+| --------------- | --------------------------------------------------------- |
+| `state([data])` | state function to get or update internal data             |
+| `actions`       | component actions that you can call outside the component |
+
+### h(tag, [...args])
+
+The `h()` is an **optional** hypertext build utility that weighs in around **~250b** and is provided as *a* way to build out your view markdown, but you can build your view using any method you like as long as it returns valid dom.
+
+
+## Example
 
 ```html
     <script type="module">
@@ -44,17 +59,10 @@ the `app` builder takes an `opts` object that expects:
                     ])
                 ]);
             }
-        }, "#main");
+        });
     </script>
-
-    <main id="app"></main>
 ```
-
-### Inspired By
-
-- hyperapp
-- Elm Architecture
 
 ## Notes
 
-> WORK-IN-PROGRESS
+> WORK-IN-PROGRESS: actions do not work
