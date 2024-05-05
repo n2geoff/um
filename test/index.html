@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagged UI Creation Lib</title>
+</head>
+<body>
+    <div id="app">
+        Tagged Loading...
+    </div>
+    <script type="module">
+        import {app, h} from "../src/index.js";
+
+        const myapp = app({
+            data: {name: "[Your Name Here]", job: "Developer"},
+            view(state, methods) {
+                return h("main", [
+                    h("strong", `Greeting from ${state.name}`),
+                    h("div", `Your local ${state.job}`),
+                    h("div", {id: "test"}, [
+                        h("h1", "Hello Tagged"),
+                        h("p", 21),
+                        h("hr")
+                    ])
+                ]);
+            }
+        }, "#app");
+    </script>
+</body>
+</html>
