@@ -23,17 +23,31 @@ export default function app(opts) {
         return data;
     }
 
+    // starts app
+    function dispatch(input, actions) {
+        Object.entries(actions).forEach(([name, action]) => {
+            if (typeof action === "function") {
+                actions[name] = (...args) => {
+                    // update date from action return
+                    Object.assign(data, action(input, ...args));
+
+                    // call update
+                    update();
+                };
+            }
+        });
+
+        update();
+    }
+
     const update = () => {
         document.querySelector(mount).replaceChildren(view(data, actions));
     }
 
     // mount view
     if (opts.view && mount) {
-        update();
+        dispatch(data, actions);
     }
 
-    return {
-        state,
-        actions,
-    }
+    return {state}
 }
