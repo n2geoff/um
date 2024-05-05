@@ -7,26 +7,41 @@
     <title>Tagged UI Creation Lib</title>
 </head>
 <body>
-    <div id="app">
-        Tagged Loading...
-    </div>
+    <div id="app"></div>
+
     <script type="module">
         import {app, h} from "../src/index.js";
 
-        const myapp = app({
-            state: {name: "[Your Name Here]", job: "Developer"},
-            view(state, actions) {
+        const $ = document.querySelector.bind(document);
+
+        const todo = app({
+            state: {todos: ["one", "two", "three"], value: ""},
+            actions: {
+                add: (state, event) => {
+                    return {...state, todos: [...state.todos, $("#todo").value]};
+                }
+            },
+            view: (state, actions) => {
                 return h("main", [
-                    h("strong", `Greeting from ${state.name}`),
-                    h("div", `Your local ${state.job}`),
-                    h("div", {id: "test"}, [
-                        h("h1", "Hello Tagged"),
-                        h("p", 21),
-                        h("hr")
-                    ])
+                    h("h1", "Todo App"),
+                    h("hr"),
+                    h("div", [
+                        h("label", "Todo"),
+                        h("input", {id: "todo", value: state.value}),
+                        h("button", {onclick: actions.add}, "Add")
+                    ]),
+                    h("hr"),
+                    h("ul", state.todos.map((i) => {
+                            return h("li", {}, i)
+                        })
+                    ),
+                    h("hr"),
+                    h("strong", `Count: ${state.todos.length}`),
+                    h("hr"),
                 ]);
-            }
-        }, "#app");
+            },
+            mount: "#app"
+        });
     </script>
 </body>
 </html>
