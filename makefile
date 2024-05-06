@@ -1,7 +1,7 @@
 build:
-	bunx rollup src/index.js --file dist/tagged.js --format esm
+	bunx rollup src/index.js --file dist/um.js --format esm
 
 minify:
-	bunx terser dist/tagged.js -c -o dist/tagged.min.js --source-map url
+	bunx terser dist/um.js -c -o dist/um.min.js --source-map url
 
 all: build minify

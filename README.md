@@ -1,8 +1,10 @@
-# Tagged
+# Um
 
 > Minimal JavaScript UI Builder
 
-An experimental composable UI builder that takes ideas from early [hyperapp](https://github.com/jorgebucaran/hyperapp) design, but does not stick to strict Elm Architecture.
+Um, is an experimental composable UI builder that takes ideas from early [hyperapp](https://github.com/jorgebucaran/hyperapp) design, but does not stick to strict Elm Architecture.
+
+Um, because you should think about NOT using it.
 
 ## Features
 - No Virtual Dom
@@ -13,9 +15,9 @@ An experimental composable UI builder that takes ideas from early [hyperapp](htt
 
 ## Overview
 
-The library only has 2 functions, `app()`  and `h()`, and the later is optional.  
+The library only has 2 functions, `app()`  and `h()`, and the later is optional.
 
-### app({opts}) 
+### app({opts})
 
 The `app()` is the builder function and takes an `opts` object:
 
@@ -43,7 +45,7 @@ The `h()` is an **optional** hypertext build utility that weighs in around **~25
 
 ```html
     <script type="module">
-        import {app, h} from "./tagged.min.js";
+        import {app, h} from "./um.min.js";
 
         const myapp = app({
             state: {name: "[Your Name Here]", job: "Developer"},
@@ -52,7 +54,7 @@ The `h()` is an **optional** hypertext build utility that weighs in around **~25
                     h("strong", `Greeting from ${state.name}`),
                     h("div", `Your local ${state.job}`),
                     h("div", {id: "test"}, [
-                        h("h1", "Hello Tagged"),
+                        h("h1", "Um, Hello"),
                         h("p", 21),
                         h("hr")
                     ])
