@@ -14,10 +14,10 @@
  */
 export default function app(opts) {
     // initial setup
-    let state   = check(opts.state, {});
-    let view    = check(opts.view, () => null);
-    let actions = check(opts.actions, {});
-    let mount   = opts.mount || "body";
+    const state   = check(opts.state, {});
+    const view    = check(opts.view, () => null);
+    const actions = check(opts.actions, {});
+    const mount   = opts.mount || "body";
 
     /**
      * simple type validation check
