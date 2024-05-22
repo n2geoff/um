@@ -67,3 +67,7 @@ The `h()` is an **optional** hypertext build utility that weighs in around **~25
 ## Notes
 
 > WORK-IN-PROGRESS
+
+### TODO
+
+- Remove State Helper or make better
