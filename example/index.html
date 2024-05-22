@@ -42,6 +42,13 @@
             },
             mount: "#app"
         });
+
+        console.log({todo});
+
+
+        todo.state.todos[0] = "Hello";
+        todo.update();
+
     </script>
 </body>
 </html>
