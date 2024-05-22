@@ -1,5 +1,5 @@
 {
     "name": "@n2geoff/um",
-    "version": "0.2.2",
+    "version": "0.4.0",
     "exports": "./src/index.js"
   }
