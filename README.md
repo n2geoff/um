@@ -13,6 +13,14 @@ Um, because you should think about, um, NOT using it.
 - ~1kb minified
 - Totally INEFFICIENT rendering (at scale)
 
+## Install
+
+Via JSDelivr CDN
+
+```js
+import {app,h} from "https://cdn.jsdelivr.net/gh/n2geoff/um/dist/um.min.js";
+```
+
 ## Overview
 
 **Um** only has 2 exported functions, `app()`  and `h()`, and the later is optional.
