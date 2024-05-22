@@ -1,10 +1,10 @@
 /**
  * HTML Tag Scripting Function
  *
- * creates new DOM element(s) from tag name(s) and attributes
+ * Generates new DOM element(s) from a tag, attributes
  *
- * @param {String} tag  - tag to create
- * @param {*} args      - attributes and/or child tag elements
+ * @param {string} tag    - tag name
+ * @param {any} args      - attributes, text or array of child elements
  *
  * @returns {HTMLElement} The created DOM element(s)
  */

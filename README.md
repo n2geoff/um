@@ -4,7 +4,7 @@
 
 Um, is an experimental composable UI builder that takes ideas from early [hyperapp](https://github.com/jorgebucaran/hyperapp) design, but does not stick to strict Elm Architecture.
 
-Um, because you should think about NOT using it.
+Um, because you should think about, um, NOT using it.
 
 ## Features
 - No Virtual Dom
@@ -15,7 +15,7 @@ Um, because you should think about NOT using it.
 
 ## Overview
 
-The library only has 2 functions, `app()`  and `h()`, and the later is optional.
+**Um** only has 2 exported functions, `app()`  and `h()`, and the later is optional.
 
 ### app({opts})
 
@@ -28,9 +28,11 @@ The `app()` is the builder function and takes an `opts` object:
 | `state`   | `{}`                       | initial data state                                          |
 | `actions` | `{}`                       | function object passed to view                              |
 | `view`    | `(state, actions) => null` | function that takes state and actions and returns valid dom |
-| `mount`   | "body"                     | valid query selector as mounting point                      |
+| `mount`   | `body`                    | valid query selector as mounting point                      |
 
 #### Output:
+
+> WARNING: May change in future
 
 | Property        | Description                                   |
 | --------------- | --------------------------------------------- |
@@ -38,7 +40,7 @@ The `app()` is the builder function and takes an `opts` object:
 
 ### h(tag, [...args])
 
-The `h()` is an **optional** hypertext build utility that weighs in around **~250b** and is provided as *a* way to build out your view markdown, but you can build your view using any method you like as long as it returns valid dom.
+The `h()` is an **optional** hypertext build utility that weighs in around **~250b** and is provided as *a* way to build out your `view` DOM, but you can build your `view` using any method you like as long as it returns valid DOM.
 
 
 ## Example
