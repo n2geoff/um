@@ -32,11 +32,12 @@ The `app()` is the builder function and takes an `opts` object:
 
 #### Output:
 
-> WARNING: May change in future
+Interface with internal state for utility expansion
 
 | Property        | Description                                   |
 | --------------- | --------------------------------------------- |
-| `state([data])` | state function to get or update internal data |
+| `state` | internal state object |
+| `update()` | function to render dom state |
 
 ### h(tag, [...args])
 
@@ -72,4 +73,4 @@ The `h()` is an **optional** hypertext build utility that weighs in around **~25
 
 ### TODO
 
-- Remove State Helper or make better
+- Improve Update

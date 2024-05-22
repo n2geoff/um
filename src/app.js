@@ -10,11 +10,11 @@
  * @param {Object}   opts.actions   object functions includes and return state
  * @param {String}   opts.mount     querySelector value
  *
- * @returns {Object}                state proxy object
+ * @returns {Object}                state and update() interface
  */
 export default function app(opts) {
     // initial setup
-    let data    = check(opts.state, {});
+    let state   = check(opts.state, {});
     let view    = check(opts.view, () => null);
     let actions = check(opts.actions, {});
     let mount   = opts.mount || "body";
@@ -30,31 +30,18 @@ export default function app(opts) {
         return typeof value === typeof type ? value : type;
     }
 
-    // state helper
-    const state = (state) => {
-        if(typeof state === "object") {
-            data = {...data, ...state};
-        }
-
-        // update ui
-        update();
-
-        // return current state
-        return data;
-    }
-
     /**
      * Assigns Dispatch-able Actions into App
      *
-     * @param {Object} input        state used by actions
-     * @param {Object} actions      functions that update state
+     * @param {Object} data        state used by actions
+     * @param {Object} actions     functions that update state
      */
-    function dispatch(input, actions) {
+    function dispatch(data, actions) {
         Object.entries(actions).forEach(([name, action]) => {
             if (typeof action === "function") {
                 actions[name] = (...args) => {
                     // update date from action return
-                    Object.assign(data, action(input, ...args));
+                    Object.assign(state, action(data, ...args));
 
                     // call update
                     update();
@@ -67,13 +54,13 @@ export default function app(opts) {
 
     /** update dom */
     const update = () => {
-        document.querySelector(mount).replaceChildren(view(data, actions));
+        document.querySelector(mount).replaceChildren(view(state, actions));
     }
 
     // mount view
     if (opts.view && mount) {
-        dispatch(data, actions);
+        dispatch(state, actions);
     }
 
-    return {state}
+    return {state,update}
 }
