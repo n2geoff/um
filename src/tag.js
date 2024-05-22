@@ -3,8 +3,8 @@
  *
  * Generates new DOM element(s) from a tag, attributes
  *
- * @param {string} tag    - tag name
- * @param {any} args      - attributes, text or array of child elements
+ * @param {String} tag                 - tag name
+ * @param {Object|String|Array} args   - attributes, text or array of child elements
  *
  * @returns {HTMLElement} The created DOM element(s)
  */
