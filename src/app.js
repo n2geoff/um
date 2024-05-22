@@ -23,7 +23,7 @@ export default function app(opts) {
      *
      * @param {*} value
      * @param {String} type
-     * @returns value|String
+     * @returns {*}
      */
     function check(value, type) {
         return typeof value === typeof type ? value : type;
