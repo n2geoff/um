@@ -1,3 +1,16 @@
+/**
+ * App Builder
+ *
+ * Composes data, views, actions together as
+ * mountable ui
+ *
+ * @param {Object}   opts           options
+ * @param {Object}   opts.state     initial app object state
+ * @param {Function} opts.view      function that returns dom. state and actions are passed in
+ * @param {Object}   opts.actions   object functions includes and return state
+ * @param {String}   opts.mount     querySelector value
+ * @returns
+ */
 export default function app(opts) {
     // initial setup
     let data    = check(opts.state, {});
@@ -5,7 +18,13 @@ export default function app(opts) {
     let actions = check(opts.actions, {});
     let mount   = opts.mount || "body";
 
-    // check set or default
+    /**
+     * simple type validation check
+     *
+     * @param {*} value
+     * @param {String} type
+     * @returns value|String
+     */
     function check(value, type) {
         return typeof value === typeof type ? value : type;
     }
@@ -23,7 +42,12 @@ export default function app(opts) {
         return data;
     }
 
-    // starts app
+    /**
+     * Assigns Dispatch-able Actions into App
+     *
+     * @param {Object} input        state used by actions
+     * @param {Object} actions      functions that update state
+     */
     function dispatch(input, actions) {
         Object.entries(actions).forEach(([name, action]) => {
             if (typeof action === "function") {
@@ -40,6 +64,7 @@ export default function app(opts) {
         update();
     }
 
+    /** update dom */
     const update = () => {
         document.querySelector(mount).replaceChildren(view(data, actions));
     }
