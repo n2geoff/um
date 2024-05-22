@@ -1,7 +1,7 @@
 {
     "name": "@n2geoff/um",
     "version": "0.4.1",
-    "exports": "./mod.ts",
+    "exports": "./index.js",
     "tasks": {
       "dev": "deno run --watch mod.ts",
       "format": "deno run -A npm:rollup mod.ts --file dist/um.js --format esm",
