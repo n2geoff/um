@@ -4,50 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tagged UI Creation Lib</title>
+    <title>UM | Todo Example</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/n2geoff/stylelite/dist/stylelite.min.css">
+    <style>
+        button.link {
+            height: 1rem;
+            padding: .25rem;
+        }
+        div, span {margin-top: .25rem; margin-bottom: .25rem;}
+        label>* {vertical-align: top;}
+    </style>
 </head>
 <body>
-    <div id="app"></div>
+    <main>
+        <div id="app"></div>
+    </main>
 
     <script type="module">
-        import {app, h} from "../src/index.js";
+        import {app, h} from "../index.js";
 
         const $ = document.querySelector.bind(document);
 
         const todo = app({
-            state: {todos: ["one", "two", "three"], value: ""},
+            state: {todos: [], value: ""},
             actions: {
-                add: (state, event) => {
-                    return {...state, todos: [...state.todos, $("#todo").value]};
+                submit: (state, event) => {
+                    if(event.key === "Enter") {
+                        const value = $("#todo").value;
+                        if(String(value).trim()) {
+                            $("#todo").value = "";
+                            return {...state, todos: [...state.todos, value]}
+                        }
+                    }
                 }
             },
             view: (state, actions) => {
                 return h("main", [
-                    h("h1", "Todo App"),
-                    h("hr"),
+                    h("h1", {style:"text-align: center"}, "Todos"),
                     h("div", [
-                        h("label", "Todo"),
-                        h("input", {id: "todo", value: state.value}),
-                        h("button", {onclick: actions.add}, "Add")
+                        h("input", {
+                            id: "todo",
+                            placeholder: "What needs to be done?",
+                            onkeypress: actions.submit,
+                            value: state.value
+                        }),
                     ]),
-                    h("hr"),
-                    h("ul", state.todos.map((i) => {
-                            return h("li", {}, i)
-                        })
+                    h("div", state.todos.map((i) => {
+                        return h("div", {style: "border-bottom: 1px solid #CCC"}, [
+                            h("label", [
+                                h("input", {type: "checkbox"}),
+                                h("span", i)
+                            ])
+                        ])
+                    })
                     ),
                     h("hr"),
-                    h("strong", `Count: ${state.todos.length}`),
+                    h("div",{class: "grid"}, [
+                        h("div",{style: "margin-left: 1rem"} ,`${state.todos.length} items left`),
+                        h("div",{class: "grid"}, [
+                            h("button",{class: "link"}, "All"),
+                            h("button",{class: "link"}, "Active"),
+                            h("button",{class: "link"}, "Completed"),
+                        ]),
+                        h("div", [
+                            h("button",{class: "link", style: "float:right"}, "Clear Completed")
+                        ]),
+                    ]),
                     h("hr"),
                 ]);
             },
             mount: "#app"
         });
 
-        console.log({todo});
-
-
-        todo.state.todos[0] = "Hello";
-        todo.update();
+        // Update State outside Creation
+        // todo.state.todos[0] = "Hello";
+        // todo.update();
 
     </script>
 </body>
