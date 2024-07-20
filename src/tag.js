@@ -14,15 +14,19 @@ export default function h(tag, ...args) {
     // support all scalar values as TextNodes
     const isScalar = (value) => ["boolean", "string", "number"].includes(typeof value);
 
-    args.forEach((arg) => {
-        if (isScalar(arg)) {
-            el.appendChild(document.createTextNode(arg));
-        } else if (Array.isArray(arg)) {
-            el.append(...arg);
+    for(let i = 0; i < args.length; i++) {
+        if (isScalar(args[i])) {
+            el.appendChild(document.createTextNode(args[i]));
+        } else if (Array.isArray(args[i])) {
+            el.append(...args[i]);
         } else {
-            Object.assign(el, arg);
+            for(const [k,v] of Object.entries(args[i])) {
+                // if not both ways, some attributes do not render
+                el.setAttribute(k, v);
+                el[k] = v;
+            }
         }
-    });
+    }
 
     return el;
 }
