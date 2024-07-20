@@ -7,11 +7,11 @@ Um, is an experimental composable UI builder that takes ideas from early [hypera
 Um, because you should think about, um, NOT using it.
 
 ## Features
-- No Virtual Dom
+- Real DOM
+- [Non-destructive (re)Rendering](https://github.com/bryhoyt/emerj)
 - No Build System
 - No Over Engineering
-- ~1kb minified
-- Totally INEFFICIENT rendering (at scale)
+- ~2kb minified
 
 ## Install
 
@@ -81,4 +81,5 @@ The `h()` is an **optional** hypertext build utility that weighs in around **~25
 
 ### TODO
 
-- Improve Update
+- Some tag attributes do not work, like rowspan on td
+- Rethink State Management, might be ok

@@ -1,3 +1,7 @@
+import diff from "./emerj.js";
+
+/*! Um v0.5.0 | MIT LICENSE | https://github.com/n2geoff/um */
+
 /**
  * App Builder
  *
@@ -54,7 +58,7 @@ export default function app(opts) {
 
     /** update dom */
     const update = () => {
-        document.querySelector(mount).replaceChildren(view(state, actions));
+        diff.merge(document.querySelector(mount), view(state, actions));
     }
 
     // mount view
